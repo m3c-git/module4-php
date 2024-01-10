@@ -1,6 +1,6 @@
 <?php
 
-function concat(string $string1, string $string2)
+function concat(string $string1, string $string2) : string
 {
     return $string1 . "" . $string2;
 }
