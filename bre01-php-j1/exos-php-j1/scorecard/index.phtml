@@ -52,15 +52,20 @@
                 
             foreach($students as $student) 
             { 
-                $somme = 0;
+                
             ?>
             <?php
-                foreach($student["grades"] as $moyenne) 
+            function average(array $stud) : float
+            {$somme = 0;
+                foreach($stud["grades"] as $moyenne) 
                 { 
                     
                     $somme += $moyenne;
-                    $moy = $somme / count($student["grades"]);
-                }     
+                    $moy = $somme / count($stud["grades"]);
+                }
+                return $moy;
+            }
+                     
                 ?>
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
@@ -84,7 +89,7 @@
         </section>
         <footer>
             <h3>Moyenne : </h3>
-            <p><?php echo  number_format($moy, 2, ',', '') ; ?></p>
+            <p><?php echo  number_format(average($student["grades"]), 2, ',', '') ; ?></p>
         </footer>
 
         <?php
