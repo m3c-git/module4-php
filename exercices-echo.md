@@ -45,7 +45,7 @@ $content = "Ths is the content of the article";
 			<p>
 
 			</p>
-		<article>
+		</article>
 	</body>
 </html>
 ```
