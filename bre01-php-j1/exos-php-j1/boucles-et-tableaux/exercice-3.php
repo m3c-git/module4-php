@@ -5,4 +5,4 @@ $user = [
 	"lastName" => "Obama"
 ];
 
-echo "Je suis" . "$user[0]" ." " . "$user[1]".", le 44ème président des USA.";
+echo "Je suis" . " " . $user["firstName"] ." " . $user["lastName"].", le 44ème président des USA.";
