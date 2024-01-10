@@ -14,12 +14,12 @@ $users = [
 
 foreach($users as $user)
 {
-       echo "$user[0][firstName]"; 
+       echo "$user[firstName]"; 
        echo "<br>";
-       echo "$user[0][lastName]"; 
+       echo "$user[lastName]"; 
        echo "<br>";
-       echo "$user[1][firstName]"; 
+       echo "$user[firstName]"; 
        echo "<br>";
-       echo "$user[1][lastName]";
+       echo "$user[lastName]";
     
 }
