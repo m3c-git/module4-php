@@ -8,5 +8,5 @@ echo  $str;
 echo "<br>";
 
 $nbstr =  "$$nb hello";
-echo br $nbstr;
+echo $nbstr;
 echo "<br>";
