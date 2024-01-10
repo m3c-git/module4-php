@@ -51,8 +51,8 @@ Cette fonction calcule la moyenne des nombres contenus dans le tableau contenu e
 ### Tester votre fonction
 
 ```php
-echo "{average([12, 15, 18, 9])}<br>"; // doit afficher 13.5
-echo "{average([12, 15, 18, 11, 14])}<br>"; // doit afficher 14
+echo average([12, 15, 18, 9])."<br>"; // doit afficher 13.5
+echo average([12, 15, 18, 11, 14])."<br>"; // doit afficher 14 
 ```
 
 ### N'oubliez pas de sauvegarder votre travail
@@ -75,8 +75,12 @@ Si le nombre passé en paramètres est pair, elle renvoie `true`, sinon elle ren
 ### Tester votre fonction
 
 ```php
-echo "{isOdd(12)}<br>"; // doit afficher 1 ou true
-echo "{isOdd(29)}<br>"; // doit afficher 0 ou false
+var_dump(isOdd(12)); // doit afficher 1 ou true
+echo "<br>";
+var_dump(isOdd(29)); // doit afficher 0 ou false
+echo "<br>";
+/* echo "{isOdd(12)}<br>";
+echo "{isOdd(29)}<br>"; */
 ```
 
 ### N'oubliez pas de sauvegarder votre travail
