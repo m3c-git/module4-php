@@ -52,15 +52,25 @@
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
             </h1>
+            <?php
+            }
+            ?>
         </header>
         <section>
             <h2>Notes : </h2>
             <ul>
             <?php
-            foreach($students as $infos => $note) 
+            foreach($students as $infos => $notes) 
             { 
             ?>
-                <li><?php echo $note["grades"][0] ?></li>
+                <?php
+                foreach($notes["grades"] as $note) 
+                { 
+                ?>
+                <li><?php echo $note ?></li>
+                <?php
+                }
+                ?>
             <?php
             }
             ?>
@@ -69,9 +79,7 @@
         <footer>
             <h3>Moyenne des notes de l'étudiant </h3>
         </footer>
-        <?php
-            }
-        ?>
+
     </article>
     
 </body>
