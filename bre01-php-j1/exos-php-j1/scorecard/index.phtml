@@ -1,0 +1,73 @@
+<?php
+
+    $students = [
+        [
+            "firstName" => "James",
+            "lastName" => "Fields",
+            "grades" => [12, 11, 15],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Richard",
+            "lastName" => "Stein",
+            "grades" => [18, 12, 13],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Mark",
+            "lastName" => "Hartoff",
+            "grades" => [9, 11, 10],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Thomas",
+            "lastName" => "Nestle",
+            "grades" => [9, 8, 5],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Jeremy",
+            "lastName" => "Brent",
+            "grades" => [18, 15, 16],
+            "average" => -1
+        ]
+    ];
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exo bulletin de notes</title>
+</head>
+<body>
+    <article class="">
+        <header>
+            <h1>
+            <?php
+            foreach($students as $student) 
+            { 
+            ?>
+                <?php echo $student["firstName"] . "" . $student["lastName"]; ?>
+        <?php
+            }
+        ?>
+            </h1>
+        </header>
+        <section>
+            <h2>Notes : </h2>
+            <ul>
+                <li>Note 1</li>
+                <li>Note 2</li>
+                <li>Note 3</li>
+            </ul>
+        </section>
+        <footer>
+            <h3>Moyenne des notes de l'étudiant </h3>
+        </footer>
+    </article>
+    
+</body>
+</html>
