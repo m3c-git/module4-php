@@ -50,10 +50,8 @@
             foreach($students as $student) 
             { 
             ?>
-                <?php echo $student["firstName"] . "" . $student["lastName"]; ?>
-        <?php
-            }
-        ?>
+                <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
+
             </h1>
         </header>
         <section>
@@ -67,6 +65,9 @@
         <footer>
             <h3>Moyenne des notes de l'étudiant </h3>
         </footer>
+        <?php
+            }
+        ?>
     </article>
     
 </body>
