@@ -52,9 +52,16 @@
                 
             foreach($students as $student) 
             { 
-
                 
             ?>
+            <?php
+                foreach($student["grades"] as $moyenne) 
+                { 
+                    $somme = 0;
+                    $somme += $moyenne;
+                    $moy = $somme / count($student["grades"]);
+                }     
+                ?>
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
             </h1>
@@ -71,7 +78,9 @@
             ?>
 
                 <li><?php echo $notes ?></li>
-
+            <?php
+            }
+            ?>
 
             </ul>
         </section>
@@ -79,9 +88,7 @@
             <h3>Moyenne : </h3>
             <p><?php echo  $moy; ?></p>
         </footer>
-            <?php
-            }
-            ?>
+
         <?php
             }
         ?>
