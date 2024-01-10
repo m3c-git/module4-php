@@ -33,16 +33,8 @@
         ]
     ];
 
-    function average(array $notes) : float
-{        
-    foreach($notes as $note) 
-        { 
-            $somme = 0;
-            $somme += $note;
-        } 
-    return $somme / count($notes);
-}
-$students["grades"] =  average($students["grades"]);
+
+
 ?>
 
 
@@ -57,8 +49,21 @@ $students["grades"] =  average($students["grades"]);
     <article class="">
         <header>
         <?php
+                
             foreach($students as $student) 
             { 
+                function average(array $student) : float
+                {        
+                    foreach($student["grades"] as $notes) 
+                    { 
+                        $somme = 0;
+                        $somme += $notes;
+                        
+                    }
+                            
+                        
+                    return $somme / count($student["grades"]);
+                }
                 
             ?>
             <h1>
@@ -82,7 +87,7 @@ $students["grades"] =  average($students["grades"]);
         </section>
         <footer>
             <h3>Moyenne : </h3>
-            <p><?php echo $average ?></p>
+            <p><?php echo  average($student["grades"]); ?></p>
         </footer>
         <?php
             }
