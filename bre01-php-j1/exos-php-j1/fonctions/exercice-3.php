@@ -13,4 +13,7 @@ function isOdd(int $nb1) : bool
     
 }
 
-echo isOdd(10);
+var_dump(isOdd(12)); // doit afficher 1 ou true
+echo "<br>";
+var_dump(isOdd(29)); // doit afficher 0 ou false
+echo "<br>";
