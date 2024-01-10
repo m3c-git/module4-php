@@ -50,17 +50,17 @@
             { 
             ?>
             <h1>
-                <?php echo $student["grades"] . " " . $student["lastName"]; ?>
+                <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
             </h1>
         </header>
         <section>
             <h2>Notes : </h2>
             <ul>
             <?php
-            foreach($students["grades"] as $student["grades"]) 
+            foreach($students as $student["grades"] => $note) 
             { 
             ?>
-                <li><?php echo $student["grades"] ?></li>
+                <li><?php echo $note ?></li>
             <?php
             }
             ?>
