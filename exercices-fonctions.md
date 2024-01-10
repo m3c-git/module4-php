@@ -79,8 +79,6 @@ var_dump(isOdd(12)); // doit afficher 1 ou true
 echo "<br>";
 var_dump(isOdd(29)); // doit afficher 0 ou false
 echo "<br>";
-/* echo "{isOdd(12)}<br>";
-echo "{isOdd(29)}<br>"; */
 ```
 
 ### N'oubliez pas de sauvegarder votre travail
@@ -103,8 +101,10 @@ Si le tableau passé en paramètres n'est pas vide, la fonction renvoie le premi
 ### Tester votre fonction
 
 ```php
-echo "{getFirst([13, 24, 45])}<br>"; // doit afficher 13
-echo "{getFirst([])}<br>"; // doit afficher null
+echo getFirst([13, 24, 45]); // doit afficher 13
+echo "<br>";
+var_dump(getFirst([])); // doit afficher null
+echo "<br>";
 ```
 
 ### N'oubliez pas de sauvegarder votre travail

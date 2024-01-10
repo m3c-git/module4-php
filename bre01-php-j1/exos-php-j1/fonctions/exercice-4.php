@@ -12,5 +12,7 @@ function getFirst(array $array1,) : ? int
     }
 }
 
-echo getFirst([13, 24, 45]) . "<br>"; // doit afficher 13
-echo getFirst([]) . "<br>"; // doit afficher null
+echo getFirst([13, 24, 45]); // doit afficher 13
+echo "<br>";
+var_dump(getFirst([])); // doit afficher null
+echo "<br>";
