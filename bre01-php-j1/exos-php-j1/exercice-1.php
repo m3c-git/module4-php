@@ -1,10 +1,12 @@
 <?php
 $nb = 42;
-echo br $nb;
+echo  $nb;
+echo "<br>";
 
 $str = 42;
-echo br $str;
+echo  $str;
+echo "<br>";
 
-$nbstr = br "$$nb hello";
-
+$nbstr =  "$$nb hello";
 echo br $nbstr;
+echo "<br>";
