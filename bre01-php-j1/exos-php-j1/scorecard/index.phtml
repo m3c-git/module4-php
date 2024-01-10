@@ -52,12 +52,12 @@
                 
             foreach($students as $student) 
             { 
-                
+                $somme = 0;
             ?>
             <?php
                 foreach($student["grades"] as $moyenne) 
                 { 
-                    $somme = 0;
+                    
                     $somme += $moyenne;
                     $moy = $somme / count($student["grades"]);
                 }     
