@@ -18,8 +18,6 @@ foreach($users as $user)
        echo "<br>";
        echo "$user[lastName]"; 
        echo "<br>";
-       echo "$user[firstName]"; 
-       echo "<br>";
-       echo "$user[lastName]";
+
     
 }
