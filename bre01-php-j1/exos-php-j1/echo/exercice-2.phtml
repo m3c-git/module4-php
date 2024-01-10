@@ -1,0 +1,40 @@
+<?php
+
+$number1 = 42;
+$number2 = 33;
+$numbers = [$number1, $number2]
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Exercice 2 echo</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+        <?php 
+            foreach($numbers as $number) 
+            { 
+                if($number % 2 === 0)
+                {
+                ?>
+                    <p class="red">
+                        <?php echo $number; ?>
+                    </p>
+                    <?php
+                }
+                else
+                {
+                ?>
+                    <p class="blue">
+                        <?php echo $number; ?>
+                    </p>
+                <?php
+                }
+            }
+        ?>
+            
+	</body>
+</html>
