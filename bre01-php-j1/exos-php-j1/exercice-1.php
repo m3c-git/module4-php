@@ -3,7 +3,7 @@ $nb = 42;
 echo $nb;
 
 $str = 42;
-ech $str;
+echo $str;
 
 $nbstr = "hello $$nb";
 
