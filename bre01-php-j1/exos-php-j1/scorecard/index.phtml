@@ -45,13 +45,12 @@
 <body>
     <article class="">
         <header>
-            <h1>
-            <?php
+        <?php
             foreach($students as $student) 
             { 
             ?>
+            <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
-
             </h1>
         </header>
         <section>
