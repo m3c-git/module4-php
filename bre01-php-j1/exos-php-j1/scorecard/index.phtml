@@ -42,7 +42,7 @@
         } 
     return $somme / count($notes);
 }
-
+$student["grades"] =  average($student["grades"]);
 ?>
 
 
@@ -59,6 +59,7 @@
         <?php
             foreach($students as $student) 
             { 
+                
             ?>
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
