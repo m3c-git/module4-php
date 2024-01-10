@@ -57,10 +57,10 @@
             <h2>Notes : </h2>
             <ul>
             <?php
-            foreach($students as $infos => $notes) 
+            foreach($students["grades"] as $notes) 
             { 
             ?>
-                <li><?php echo $notes["grades"] ?></li>
+                <li><?php echo $notes ?></li>
             <?php
             }
             ?>
