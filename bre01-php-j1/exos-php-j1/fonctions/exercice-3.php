@@ -2,7 +2,7 @@
 
 function isOdd(int $nb1) : bool
 {
-    if($nb1%1 === 1)
+    if($nb1%2 === 1)
     {
         return false;
     }
