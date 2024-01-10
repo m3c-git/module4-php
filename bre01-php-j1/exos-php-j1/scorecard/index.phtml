@@ -48,25 +48,7 @@
 <body>
     <article class="">
         <header>
-        <?php
-                
-            foreach($students as $student) 
-            { 
-                function average(array $student) : float
-                {        
-                    foreach($student["grades"] as $notes) 
-                    { 
-                        $somme = 0;
-                        $somme += $notes;
-                        var_dump($somme);
-                        
-                    }
-                    
-                       $moy = $somme / count($student["grades"]);     
-                       var_dump($moy); 
-                }
-                
-            ?>
+
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
             </h1>
@@ -77,19 +59,25 @@
             <?php
             foreach($student["grades"] as $notes) 
             { 
+                $somme = 0;
+                $somme += $notes;
+                var_dump($somme);
+                $moy = $somme / count($student["grades"]);     
+                var_dump($moy);
             ?>
 
                 <li><?php echo $notes ?></li>
 
-            <?php
-            }
-            ?>
+
             </ul>
         </section>
         <footer>
             <h3>Moyenne : </h3>
             <p><?php echo  average($student["grades"]); ?></p>
         </footer>
+            <?php
+            }
+            ?>
         <?php
             }
         ?>
