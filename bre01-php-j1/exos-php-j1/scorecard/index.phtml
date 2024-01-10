@@ -49,12 +49,6 @@
     <article class="">
         <header>
         <?php
-                
-            foreach($students as $student) 
-            { 
-                
-            ?>
-            <?php
             function average(array $stud) : float
             {$somme = 0;
                 foreach($stud as $moyenne) 
@@ -67,6 +61,13 @@
             }
                      
                 ?>
+        <?php
+                
+            foreach($students as $student) 
+            { 
+                
+            ?>
+
             <h1>
                 <?php echo $student["firstName"] . " " . $student["lastName"]; ?>
             </h1>
