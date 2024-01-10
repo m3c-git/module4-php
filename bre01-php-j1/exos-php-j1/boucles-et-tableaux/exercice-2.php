@@ -2,10 +2,10 @@
 
 $numbers = [28, 32, 44, -67, 18, 24, -98];
 
-foreach($tab as $animal)
+foreach($numbers as $number)
 {
-    if($animal > 0){
-       echo "$animal"; 
+    if($number > 0){
+       echo "$number"; 
        echo "<br>";
     }
     
