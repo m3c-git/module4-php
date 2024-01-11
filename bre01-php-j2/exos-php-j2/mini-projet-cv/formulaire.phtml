@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">  
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>mini-projet-cv</title>
+</head>
+<body>
+    <header class="header">
+        <h1></h1>
+        <p>Intitulé du poste</p>
+    </header>
+    <main class="cont-form">
+        <form action="" method="$_POST">
+            <fieldset>
+                <h2 class="">INFORMATIONS</h2>
+                <label for="nom">Nom</label>
+                <input name="nom" id="nom" type="text"/>
+                <label for="prenom" id="prenom">Prénom</label>
+                <input name="prenom" id="prenom" type="text"/>
+                <label for="mail">Email</label>
+                <input name="mail" id="mail" type="email"/>
+                <label for="telephone">Téléphone</label>
+                <input name="telephone" id="telephone" type="tel"/>
+                <label for="linkedin">Linkedin</label>
+                <input name="linkedin" id="linkedin" type="text"/>
+                <label for="github">Github</label>
+                <input name="github" id="github" type="text"/>
+                <label for="biographie">Biographie</label>
+                <textarea cols="30" rows="5">Long text.</textarea>
+                <label for="loisir 1">Loisir 1</label>
+                <input name="loisir" id="loisir" type="loisir"/>
+                <label for="loisir">Loisir 2</label>
+                <input name="loisir" id="loisir" type="loisir"/>
+                <label for="loisir">Loisir 3</label>
+                <input name="loisir" id="loisir" type="loisir"/>
+                <label for="loisir">Loisir 4</label>
+                <input name="loisir" id="loisir" type="loisir"/>
+                <h3>Langues</h3>
+                <div class="checkbox">
+                    <div>
+                        <input name="français" type="checkbox"/> 
+                        <label for="français">Français</label>
+                    </div>
+                    <div>
+                        <input name="anglais" type="checkbox"/>
+                        <label for="anglais">Anglais</label>
+                    </div>
+                    <div>
+                        <input name="arabe" type="checkbox"/>
+                        <label for="arabe">Arabe</label>
+                    </div>
+                    <div>
+                        <input name="créole" type="checkbox"/>
+                        <label for="créole">Créole</label> 
+                    </div>
+                    <div>
+                        <input name="espagnol" type="checkbox"/>
+                        <label for="espagnol">Espagnol</label>
+                    </div>
+                    
+                    
+                    
+                    
+                      
+                </div>
+                
+                <button type="submit" value="Submit">Submit</button>
+            </fieldset>
+                
+            <fieldset>
+                <h2 class="">COMPETENCES</h2>
+                <h3>Langages de Programation</h3>
+                <input name="html" type="checkbox"/> 
+                <label for="html">HTML</label>
+                <input name="css" type="checkbox"/>
+                <label for="css">CSS</label>
+                <input name="javascript" type="checkbox"/>
+                <label for="javascript">JavaScript</label>
+                <input name="php" type="checkbox"/>
+                <label for="php">PHP</label> 
+                <input name="sql" type="checkbox"/>
+                <label for="sql">SQL</label>
+                <h3>Frameworks & Librairies</h3>
+                <input name="sass" type="checkbox"/> 
+                <label for="sass">Sass</label>
+                <input name="bootstrap" type="checkbox"/>
+                <label for="bootstrap">Bootstrap</label>
+                <input name="symfony" type="checkbox"/>
+                <label for="symfony">Symfony</label>
+                <input name="laravel" type="checkbox"/>
+                <label for="laravel">Laravel</label> 
+                <h3>Logiciels</h3>
+                <input name="sass" type="checkbox"/> 
+                <label for="sass">Photoshop</label>
+                <input name="bootstrap" type="checkbox"/>
+                <label for="bootstrap">Illustrator</label>
+                <input name="symfony" type="checkbox"/>
+                <label for="symfony">XD</label>
+                <input name="laravel" type="checkbox"/>
+                <label for="laravel">Figma</label>
+                <h3>Couleur du CV</h3>
+                <label for="couleur">Couleur</label>
+                <select name="couleur" id="couleur">
+                    <option value="bleu">Bleu</option>
+                    <option value="rouge">Rouge</option>
+                </select>
+            </fieldset>
+            
+
+        </form>
+    </main>
+</body>
+</html>

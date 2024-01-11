@@ -1,0 +1,71 @@
+/* general */
+
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fefefe;
+}
+
+/* formulaire */
+
+form{
+    display: flex;
+    flex-direction: row;
+
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.checkbox{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+
+}
+
+
+/* cv */
+
+.header{
+    color: white;
+}
+
+.header P{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.header .rouge{
+    background: #b50604;
+}
+
+.header .bleu{
+    background: #b50604;
+}
+
+.rouge{
+    color: #b50604;
+}
+
+.bleu{
+    color: #24527c;
+}
+
+.contact p:nth-child(odd){
+    white-space: pre;
+}
+
+.cont-cv{
+    display: flex;
+    flex-direction: row;
+}
+
+section{
+    width: 50%;
+    padding-left: 10%;
+}
+
