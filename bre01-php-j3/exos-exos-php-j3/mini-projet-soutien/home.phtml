@@ -1,25 +1,59 @@
+<?php 
+
+$newconts = [];
+
+
+       /*  for($i = 0; $i < 3; $i++)
+        {
+            
+        }
+     */
+    foreach($posts as $post => $postcontents)
+        {$newconts[$post] = [];
+            foreach($postcontents as $idx => $postcontent)
+        {
+            
+            if($idx < 3)
+            {
+                $newconts[$post][$idx] = $postcontent; 
+             
+            }
+
+
+        }}var_dump($newconts)
+    
+
+?>
+
 <main id="home" class="p-3">
     <h1 class="text-center m-5">Ze blog</h1>
     <?php
-    foreach($posts as $cat)
+    foreach($newconts as $cat => $contents)
         {
         ?>
     <section class="my-5">
         
-        <h2> <?php echo $cat; ?></h2>
+        <h2> <?php echo "$cat"; ?></h2>
         
         <ul class="row p-0">
+        <?php
+        
+                foreach($contents as $content)
+                {
+                   
+                
+        ?>     
             <li class="col m-1">
                 <article class="card">
                     <header class="card-header p-0">
                         <img src="https://picsum.photos/id/1/550/250" class="card-img-top" alt="" />
                         <h3 class="card-title px-2 py-3">
-                            Titre de l'article
+                            <?php echo "$content[title]"; ?>
                         </h3>
                     </header>
                     <section class="card-body p-2">
                         <p class="card-text">
-                            Extrait de l'article
+                        <?php echo "$content[excerpt]"; ?>
                         </p>
                     </section>
                     <footer class="p-2">
@@ -27,7 +61,10 @@
                     </footer>
                 </article>
             </li>
-            <li class="col m-1">
+        <?php
+                }
+        ?>
+           <!--  <li class="col m-1">
                 <article class="card">
                     <header class="card-header p-0">
                         <img src="https://picsum.photos/id/17/550/250" class="card-img-top" alt="" />
@@ -63,12 +100,12 @@
                     </footer>
                 </article>
             </li>
-        </ul>
+        </ul> -->
     </section>
     <?php
         }
         ?>
-    <section class="my-5">
+   <!--  <section class="my-5">
         <h2>Development</h2>
         <ul class="row p-0">
             <li class="col m-1">
@@ -185,5 +222,5 @@
                 </article>
             </li>
         </ul>
-    </section>
+    </section> -->
 </main>
