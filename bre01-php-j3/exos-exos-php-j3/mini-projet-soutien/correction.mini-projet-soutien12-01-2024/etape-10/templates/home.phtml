@@ -1,0 +1,59 @@
+<?php
+    $home_posts = [];
+
+    foreach($posts as $key => $item)
+    {
+        $home_posts[$key] = [];
+
+        foreach($item as $idx => $post)
+        {
+            if($idx < 3)
+            {
+                $home_posts[$key][$idx] = $post;
+            }
+        }
+    }
+?>
+
+
+<main id="home" class="p-3">
+    <h1 class="text-center m-5">Ze blog</h1>
+    <?php
+        foreach($home_posts as $category => $posts)
+        {
+            ?>
+                <section class="my-5">
+                    <h2><?= ucfirst($category)?></h2>
+                    <ul class="row p-0">
+                        <?php
+                        foreach($posts as $idx => $post)
+                        {
+                            ?>
+                            <li class="col m-1">
+                                <article class="card">
+                                    <header class="card-header p-0">
+                                        <img src="https://picsum.photos/id/1/550/250" class="card-img-top" alt="man typing on a laptop" />
+                                        <h3 class="card-title px-2 py-3">
+                                            <?= $post["title"] ?>
+                                        </h3>
+                                    </header>
+                                    <section class="card-body p-2">
+                                        <p class="card-text">
+                                            <?= $post["excerpt"] ?>
+                                        </p>
+                                    </section>
+                                    <footer class="p-2">
+                                        <a href="index.php?route=article&category=<?= $category; ?>&post=<?= $idx; ?>" class="btn btn-primary">Lire l'article</a>
+                                    </footer>
+                                </article>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </section>
+            <?php
+        }
+    ?>
+    ?>
+</main>

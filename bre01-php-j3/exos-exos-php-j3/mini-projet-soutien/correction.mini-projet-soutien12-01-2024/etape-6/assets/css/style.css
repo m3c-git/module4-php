@@ -1,0 +1,8 @@
+#home ul {
+    list-style: none;
+}
+
+#post article p {
+    padding-top:2rem;
+    padding-bottom: 2rem;
+}
