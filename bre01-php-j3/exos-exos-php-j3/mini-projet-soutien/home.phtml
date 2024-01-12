@@ -1,7 +1,13 @@
 <main id="home" class="p-3">
     <h1 class="text-center m-5">Ze blog</h1>
+    <?php
+    foreach($posts as $cat)
+        {
+        ?>
     <section class="my-5">
-        <h2>Design</h2>
+        
+        <h2> <?php echo $cat; ?></h2>
+        
         <ul class="row p-0">
             <li class="col m-1">
                 <article class="card">
@@ -59,6 +65,9 @@
             </li>
         </ul>
     </section>
+    <?php
+        }
+        ?>
     <section class="my-5">
         <h2>Development</h2>
         <ul class="row p-0">
