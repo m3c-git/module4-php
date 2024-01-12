@@ -1,6 +1,6 @@
 <?php 
 error_reporting(E_ERROR | E_PARSE);
-require "post.phtml";
+require "posts.phtml";
 
 $route = null;
 
