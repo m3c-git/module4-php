@@ -1,5 +1,9 @@
 <?php 
 error_reporting(E_ERROR | E_PARSE);
+?>
+
+<?php 
+error_reporting(E_ERROR | E_PARSE);
 require "posts.phtml";
 
 $route = null;
