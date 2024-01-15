@@ -1,0 +1,10 @@
+1 - SELECT * FROM users;
+2 - SELECT * FROM users ORDER BY last_name;
+3 - SELECT * FROM users ORDER BY registration_date DESC LIMIT 1;
+4 - SELECT users.birthdate FROM `users` WHERE SUBSTR(birthdate, 6,7) = 01;
+5 - 221
+6 - SELECT users.*, addresses.city FROM users JOIN addresses ON users.address_id = addresses.id;
+7 - SELECT users.*, addresses.number FROM users JOIN addresses ON users.address_id = addresses.id WHERE addresses.number IS null;
+8 - SELECT products.price FROM products WHERE products.price > 1000;
+9 - SELECT products.*, pictures.caption FROM products JOIN pictures ON products.id = pictures.product_id;
+10 - 
