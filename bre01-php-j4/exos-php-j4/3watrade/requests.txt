@@ -7,4 +7,6 @@
 7 - SELECT users.*, addresses.number FROM users JOIN addresses ON users.address_id = addresses.id WHERE addresses.number IS null;
 8 - SELECT products.price FROM products WHERE products.price > 1000;
 9 - SELECT products.*, pictures.caption FROM products JOIN pictures ON products.id = pictures.product_id;
-10 - 
+10 - SELECT categories.title, products.name, products_categories.product_id, products_categories.category_id FROM categories JOIN products_categories ON products_categories.category_id = categories.id JOIN products ON products_categories.product_id = products.id WHERE categories.title LIKE "voyage"
+11 - SELECT users.*,COUNT(*) FROM orders JOIN users ON orders.user_id = users.id GROUP BY orders.user_id HAVING COUNT(*) > 10
+12 - SELECT orders.id, users.* FROM users JOIN orders ON users.id = orders.user_id WHERE orders.user_id = (SELECT users.id FROM users ORDER BY users.registration_date LIMIT 1)
