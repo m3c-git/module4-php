@@ -1,11 +1,11 @@
 <?php
-$host = "db.3wa.io";
+$host = "localhost"; //host pour phpmyadmin de la 3wa =>  "db.3wa.io"
 $port = "3306";
-$dbname = "prenomnom_phpj5";
+$dbname = "eddyfrair_phpj5";
 $connexionString = "mysql:host=$host$;port=$port;dbname=$dbname";
 
-$user = "votre_username";
-$password = "votre_password";
+$user = "root";
+$password = "";
 
 $db = new PDO(
     $connexionString,

@@ -1,6 +1,6 @@
 <?php
 
-//require "config/connexion.php";
+require "config/connexion.php";
 
 $route = null;
 
