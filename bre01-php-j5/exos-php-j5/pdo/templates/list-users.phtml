@@ -1,5 +1,8 @@
 <?php
-
+    $query = $db->prepare('SELECT * FROM users');
+    $query->execute();
+    $users = $query->fetchAll(PDO::FETCH_ASSOC);
+    
 ?>
 
 <main class="container py-5">
@@ -31,28 +34,36 @@
             </tr>
         </thead>
         <tbody>
+        <?php
+                foreach($users as $infos => $user)
+                {
+               
+                ?>
             <tr>
                 <td>
                     #
                 </td>
                 <td>
-                    -
+                <?php echo $user["email"]; ?>
                 </td>
                 <td>
-                    -
+                <?php echo $user["password"]; ?>
                 </td>
                 <td>
-                    -
+                <?php echo $user["firstname"]; ?>
                 </td>
                 <td>
-                    -
+                <?php echo $user["lastname"]; ?>
                 </td>
                 <td>
-                    <a href="" class="btn btn-primary"><scan class="bi-eye-fill"></scan></a>
-                    <a href="" class="btn btn-success"><scan class="bi-pencil-fill"></scan></a>
-                    <a href="" class="btn btn-danger"><scan class="bi-trash-fill"></scan></a>
+                    <a href="index.php?route=show-user&id=<?php echo $user["id"];?>" class="btn btn-primary"><scan class="bi-eye-fill"></scan></a>
+                    <a href="index.php?route=edit-user&id=<?php echo $user["id"];?>" class="btn btn-success"><scan class="bi-pencil-fill"></scan></a>
+                    <a href="logic/delete-user.php?id=<?php echo $user["id"];?>" class="btn btn-danger"><scan class="bi-trash-fill"></scan></a>
                 </td>
             </tr>
+            <?php
+                }
+                ?>
         </tbody>
         <tfoot>
             <tr>

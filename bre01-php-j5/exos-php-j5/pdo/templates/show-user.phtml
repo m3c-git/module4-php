@@ -1,4 +1,21 @@
+<?php
+    if(isset($_GET["id"]))
+    {
+        $query = $db->prepare('SELECT * FROM users WHERE id = :id');
+        $parameters = [
+            'id' => $_GET['id']
+            ];
+            $query->execute($parameters);
+            $id = $query->fetch(PDO::FETCH_ASSOC);
+            var_dump($id);
+
+    }
+
+
+    
+?>
+
 <main class="container py-5 text-center">
-    <h1>Prénom et Nom de l'utilisateur</h1>
-    <h2>email de l'utilisateur</h2>
+    <h1><?php echo $id["firstname"] . " " . $id["lastname"]; ?></h1>
+    <h2><?php echo $id["email"]; ?></h2>
 </main>
