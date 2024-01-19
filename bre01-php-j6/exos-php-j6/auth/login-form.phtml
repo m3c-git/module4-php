@@ -1,0 +1,47 @@
+<?php 
+
+
+if(isset($_POST["email"]) && isset($_POST["password"]))
+{
+    $query = $db->prepare('SELECT * FROM users WHERE users.email = :email');
+    $parameters = [
+        'email' => $_POST["email"]
+        ];
+    $query->execute();
+    $users = $query->fetch(PDO::FETCH_ASSOC);
+
+        if($_POST["email"] = $users["email"])
+        {
+            if($_POST["password"] === $user["password"])
+            {
+                $_SESSION["firstname"] = $user["firstname"];
+                $_SESSION["lastname"] = $user["lastname"];
+                echo $_SESSION["lastname"] . " " . $_SESSION["firstname"];
+            }
+            else
+            {
+                echo "password incorrecte !!!";
+                die();
+
+            }
+        }
+        else
+        {
+            echo "email incorrecte !!!";
+            die();
+        }
+
+            
+}
+
+
+
+?>
+
+<form action="" method="post">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+    <label for="password">Mot de passe</label>
+    <input type="password" name="password" id="password" placeholder="Votre mot de passe">
+    <button type="submit">Connexion</button>
+</form>

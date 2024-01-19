@@ -1,0 +1,37 @@
+<?php
+$category = null;
+$post = null;
+
+
+
+if(isset($_GET["post"]))
+{
+    $query = $db->prepare('SELECT posts.* FROM posts WHERE posts.id = :postNb');
+    $parameters = [
+        'postNb' => $_GET["post"]
+        ];
+    $query->execute($parameters);
+    $post = $query->fetch(PDO::FETCH_ASSOC);
+    
+}
+
+
+
+?>
+
+
+<main id="post">
+    <article class="container mb-5">
+
+            <header>
+                <img class="img-fluid" src="https://picsum.photos/id/17/2000/600" alt="iage d'illustration" />
+                <h1 class="my-5">
+                    <?= $post["title"]; ?>
+                </h1>
+            </header>
+            <section>
+                <?=  $post["content"]; ?>
+            </section>
+    </article>
+
+</main>
