@@ -5,24 +5,31 @@
     if(isset($_GET["category"]))
     {
         $category = $_GET["category"];
-    }
 
+        $query = $db->prepare('SELECT posts.*, categories.nom FROM posts JOIN categories ON posts.categories_id = categories.id  WHERE categories.nom = :catId ');
+        $parameters = [
+            'catId' => $category
+            ];
+        $query->execute($parameters);
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC); 
+    }
+/* 
     if($category !== null && isset($posts[$category]))
     {
         $category_posts = $posts[$category];
-    }
+    } */
 ?>
 
 
 <main id="home" class="p-3">
     <h1 class="text-center m-5"><?= ucfirst($category); ?></h1>
     <?php
-    if($category !== null && count($category_posts) > 0)
+    if($category !== null )
     {
         ?>
         <ul class="row p-0">
             <?php
-            foreach ($category_posts as $idx => $post)
+            foreach ($posts as $post)
             {
                 ?>
                 <li class="col-4 my-3">
@@ -39,7 +46,7 @@
                             </p>
                         </section>
                         <footer class="p-2">
-                            <a href="index.php?route=article&category=<?= $category; ?>&post=<?= $idx; ?>" class="btn btn-primary">Lire l'article</a>
+                            <a href="index.php?route=article&category=<?= $category; ?>&post=<?= $post["categories_id"]; ?>" class="btn btn-primary">Lire l'article</a>
                         </footer>
                     </article>
                 </li>
