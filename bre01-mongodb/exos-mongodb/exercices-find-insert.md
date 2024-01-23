@@ -10,13 +10,13 @@ Pour compter le résultat d'une requête vous avez deux syntaxes possibles :
 
 ```js
 let count = 0;
-db.collection.find().forEach((doc) => count++);
+db.collection.find().forEach((doc) => count++); //Reponse Eddy: db.restaurants.find().forEach((doc) => count++);
 ```
 
 ### Utiliser la méthode count
 
 ```js
-db.collection.find(query, restriction).count();
+db.collection.find(query, restriction).count(); //Reponse Eddy: db.collection.find({}).count(); 
 ```
 
 Faites votre requête avec la méthode boucle JS puis comparez votre résultat à celui de la méthode count.
@@ -38,6 +38,34 @@ La seconde fois le 06/06/2021, il a obtenu le grade 'A++' avec la note de 18.
 
 Vérifiez bien ensuite que votre restaurant a bien été inséré.
 
+```js
+db.restaurants.insertOne({
+  _id: ObjectId(99999),
+  address: {
+      building: '165',
+      street: 'Farragut Road'
+    },
+    borough: 'Brooklyn',
+    cuisine: 'Burgers',
+    grades: [
+      {
+        date: ISODate("2015-04-03T00:00:00.000Z"),
+        grade: 'A+',
+        score: 15
+      },
+      {
+        date: ISODate("2021-06-06T00:00:00.000Z"),
+        grade: 'A++',
+        score: 18
+      }
+    ],
+  name: "Freshly Burger",
+  restaurant_id: '45872563'
+});
+
+```
+
+
 
 ## Exercice 3
 
@@ -46,5 +74,5 @@ Donnez les noms (et uniquement les noms) des restaurants ayant déjà obtenu le 
 💡Pour vérifier un champ imbriqué dans l'objet utilisez la syntaxe `"objet.objet"`, par exemple :
 
 ```js
-db.restaurants.find({"address.building" : 165});
+db.restaurants.find({"address.building" : 165}); // reponse Eddy: db.restaurants.find({"grades.score" : 20}, '{_id:0, name:1});
 ```
