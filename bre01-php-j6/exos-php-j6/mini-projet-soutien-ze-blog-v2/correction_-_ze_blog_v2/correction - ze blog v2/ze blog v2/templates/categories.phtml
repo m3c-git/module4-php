@@ -1,0 +1,70 @@
+<?php
+    $category = null;
+    $category_posts = [];
+
+    if(isset($_GET["category"]))
+    {
+        $category = $_GET["category"];
+    }
+    
+    if($category !== null) {
+        $query = $db->prepare('SELECT posts.* FROM posts JOIN categories ON posts.id_category = categories.id WHERE categories.name = :name ORDER BY posts.id DESC');
+        $parameters = [
+            "name" => $category
+        ];
+        $query->execute($parameters);
+        $category_posts = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    /* if($category !== null && isset($posts[$category]))
+    {
+        $category_posts = $posts[$category];
+    }*/
+?>
+
+
+<main id="home" class="p-3">
+    <h1 class="text-center m-5"><?= ucfirst($category); ?></h1>
+    <?php
+    if($category !== null && count($category_posts) > 0)
+    {
+        ?>
+        <ul class="row p-0">
+            <?php
+            // foreach ($category_posts as $idx => $post)
+            foreach ($category_posts as $post)
+            {
+                ?>
+                <li class="col-4 my-3">
+                    <article class="card">
+                        <header class="card-header p-0">
+                            <img src="https://picsum.photos/id/1/550/250" class="card-img-top" alt="image d'illustration" />
+                            <h3 class="card-title px-2 py-3">
+                                <?= $post["title"]; ?>
+                            </h3>
+                        </header>
+                        <section class="card-body p-2">
+                            <p class="card-text">
+                                <?= $post["excerpt"]; ?>
+                            </p>
+                        </section>
+                        <footer class="p-2">
+                            <!--<a href="index.php?route=article&category=<?= $category; ?>&post=<?= $idx; ?>" class="btn btn-primary">Lire l'article</a>-->
+                            <a href="index.php?route=article&category=<?= $category; ?>&post=<?= $post["id"]; ?>" class="btn btn-primary">Lire l'article</a>
+                        </footer>
+                    </article>
+                </li>
+                <?php
+            }
+            ?>
+        </ul>
+            <?php
+    }
+    else
+    {
+        ?>
+        <p>No articles for this category.</p>
+        <?php
+    }
+    ?>
+</main>

@@ -13,21 +13,34 @@
             }
         }
     }
+
+    $query = $db->prepare('SELECT categories.* FROM categories ');
+
+    $query->execute();
+    $cats = $query->fetchAll(PDO::FETCH_ASSOC); 
+
+    $query2 = $db->prepare('SELECT posts.* FROM posts JOIN categories ON posts.categories_id = categories.id ORDER BY  categories.nom LIMIT 9');
+
+    $query2->execute();
+    $posts = $query2->fetchAll(PDO::FETCH_ASSOC); 
+var_dump($posts);
 ?>
 
 
 <main id="home" class="p-3">
     <h1 class="text-center m-5">Ze blog</h1>
     <?php
-        foreach($home_posts as $category => $posts)
+        foreach($cats as $cat)
         {
             ?>
                 <section class="my-5">
-                    <h2><?= ucfirst($category)?></h2>
+                    <h2><?= ucfirst($cat["nom"])?></h2>
                     <ul class="row p-0">
                         <?php
-                        foreach($posts as $idx => $post)
+                        foreach($posts as $key => $post)
                         {
+                            if($key < 3 && $post["categories.nom"] = $cat["nom"])
+                            {
                             ?>
                             <li class="col m-1">
                                 <article class="card">
@@ -48,12 +61,11 @@
                                 </article>
                             </li>
                             <?php
-                        }
+                        }}
                         ?>
                     </ul>
                 </section>
             <?php
         }
-    ?>
     ?>
 </main>
