@@ -213,23 +213,23 @@ Imaginons que vous voulez un comportement particulier si une note est supérieur
 db.inventory.updateMany(
     // pour tous les documents qui ont un type
     { type: { $exists : true } },
-    {
+    [{
         $set : {
             type : {
                 $switch: {
                     branches : [
                         // en fonction de la valeur du champ type, on génère une nouvelle valeur
-                        { case: { $eq: ['type', 'journal'] }, then: 'Actualité' },
-                        { case: { $eq: ['type', 'lux paper'] }, then: 'Papier LUX' },
-                        { case: { $eq: ['type', 'notebook'] }, then: 'Carnet' },
-                        { case: { $eq: ['type', 'planner'] }, then: 'Calendrier' },
-                        { case: { $eq: ['type', 'postcard'] }, then: 'Carte Postale' },
+                        { case: { $eq: ['$type', 'journal'] }, then: 'Actualité' },
+                        { case: { $eq: ['$type', 'lux paper'] }, then: 'Papier LUX' },
+                        { case: { $eq: ['$type', 'notebook'] }, then: 'Carnet' },
+                        { case: { $eq: ['$type', 'planner'] }, then: 'Calendrier' },
+                        { case: { $eq: ['$type', 'postcard'] }, then: 'Carte Postale' },
                     ],
                     default: 'Pas de type'
                 }
             }
         }
-    }
+    }]
 );
 ```
 

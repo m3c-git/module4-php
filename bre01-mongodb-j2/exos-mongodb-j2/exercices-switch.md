@@ -11,3 +11,24 @@ Pour vérifier une taille dans un switch :
 ```js
 { $size :  "$tags" }
 ```
+<!-- Reponse Eddy: db.inventory.find({ tags : { $exists : true } }).count() -->
+<!-- Reponse Eddy: db.inventory.updateMany(
+    // pour tous les documents qui ont un type
+    { tags: { $exists : true } },
+    {
+        $set : {
+            label : {
+                $switch: {
+                    branches : [
+                        // en fonction de la valeur du champ type, on génère une nouvelle valeur
+                        { case: {"tags.1" : {$exists : true}}, then: 'A' },
+                        { case: {"tags.3" : {$exists : true}}, then: 'AA' },
+                    ],
+                    default: 'B'
+                }
+            }
+        }
+    }
+); -->
+<!-- Reponse Eddy: -->
+ 
