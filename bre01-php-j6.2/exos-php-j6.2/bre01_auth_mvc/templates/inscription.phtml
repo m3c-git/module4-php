@@ -1,0 +1,41 @@
+<main>
+	<section>
+        <h3>Inscription</h3>
+        <form id="signupForm" action="./services/check-inscription.php" method="POST">
+            <fieldset>
+                <label for="signupUsername">
+                    Nom d'utilisateur
+                </label>
+                <input type="text" name="signupUsername" id="signupUsername" />
+            </fieldset>
+            <fieldset>
+                <label for="signupEmail">
+                    Email
+                </label>
+                <input type="email" name="signupEmail" id="signupEmail" />
+            </fieldset>
+            <fieldset>
+                <label for="signupPassword">
+                    Mot de passe
+                </label>
+                <input type="password" name="signupPassword" id="signupPassword" />
+            </fieldset>
+            <fieldset>
+                <label for="signupConfirmPassword">
+                    Confirmer le mot de passe
+                </label>
+                <input type="password" name="signupConfirmPassword" id="signupConfirmPassword" />
+            </fieldset>
+            <fieldset>
+                <label for="signupRole">
+                    Rôle
+                </label>
+                <select id="signupRole" name="signupRole">
+                    <option value="user">Utilisateur</option>
+                    <option value="admin">Administrateur</option>
+                </select>
+            </fieldset>
+            <button type="submit">Créer un compte</button>
+        </form>
+    </section>
+</main>

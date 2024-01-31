@@ -105,7 +105,7 @@ La méthode `update` prend un `User` en paramètres et ne retourne rien. Elle va
 
 #### delete
 
-La méthode `update` prend un `int $id` en paramètres et ne retourne rien. Elle va supprimer le `User` en base de données qui a l'id passé en paramètres.
+La méthode `delete` prend un `int $id` en paramètres et ne retourne rien. Elle va supprimer le `User` en base de données qui a l'id passé en paramètres.
 
 ### La classe CategoryManager
 
