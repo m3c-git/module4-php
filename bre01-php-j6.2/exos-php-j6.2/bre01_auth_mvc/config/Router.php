@@ -19,7 +19,7 @@ class Router
         {
             if(isset($_POST["loginEmail"])  && isset($_POST["loginPassword"]))
             {
-                findAll();
+
             }
 
 
