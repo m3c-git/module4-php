@@ -19,7 +19,8 @@ class Router
         {
             if(isset($_POST["loginEmail"])  && isset($_POST["loginPassword"]))
             {
-
+                $page = new AuthController();
+                $page->checkConnexion();
             }
 
 

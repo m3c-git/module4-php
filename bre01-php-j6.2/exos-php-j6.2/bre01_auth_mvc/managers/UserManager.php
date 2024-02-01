@@ -19,17 +19,17 @@ class UserManager extends AbtractManager
 
     }
 
-    public function findOne(int $id) : ? User
+    public function findEmail() : ? array
     {
-        if(isset($_GET["id"]))
+        if(isset($_POST["loginEmail"]))
         {
-            $query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
+            $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
             $parameters = [
-                'id' => $_GET['id']
+                'email' => $_POST['loginEmail']
                 ];
                 $query->execute($parameters);
-                
-                return $id = $query->fetch(PDO::FETCH_ASSOC);
+                $loginEmail = $query->fetch(PDO::FETCH_ASSOC);
+                return $loginEmail ;
     
         }
 
