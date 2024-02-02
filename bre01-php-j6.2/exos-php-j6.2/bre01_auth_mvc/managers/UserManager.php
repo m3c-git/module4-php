@@ -46,7 +46,7 @@ class UserManager extends AbtractManager
     
         
        /* Lors du INSERT à ne pas mettre les colonne entre double quote ou quote simple.
-        N pas mettre les valeurs du VALUE entre backquote*/
+        Ne pas mettre les valeurs du VALUE entre backquote*/
         $query = $this->db->prepare("INSERT INTO users (email, password, firstname, lastname) VALUES (:email, :password, :firstname, :lastname)");
         $parameters = [
             'email' => $email, 'password' => $password, 'firstname' => $firstname, 'lastname' => $lastname
