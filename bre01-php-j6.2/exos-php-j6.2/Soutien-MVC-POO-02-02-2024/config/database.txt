@@ -1,0 +1,4 @@
+root
+
+localhost
+eddyfrair_soutien_bre01_mvc
