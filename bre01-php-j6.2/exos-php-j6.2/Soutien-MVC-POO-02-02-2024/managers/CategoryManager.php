@@ -28,13 +28,14 @@ class CategoryManager extends AbstractManager
     }
 
     public function create(Category $Category) : void
-    {    $Category;
-        
+    {    $name[] = $Category;
+        var_dump($name[0]->name);
+        die();
        /* Lors du INSERT à ne pas mettre les colonne entre double quote ou quote simple.
         Ne pas mettre les valeurs du VALUE entre backquote*/
         $query = $this->db->prepare("INSERT INTO categories (name) VALUES (:name)");
         $parameters = [
-            'name' => $Category
+            'name' => $name
             ];
         $query->execute($parameters);
 
