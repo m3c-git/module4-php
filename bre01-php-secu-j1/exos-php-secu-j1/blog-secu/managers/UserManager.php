@@ -14,25 +14,29 @@ class UserManager extends AbstractManager
 
     }
 
-    public function findByEmail(string $email) : ? User
+    public function findByEmail(string $email) : ? array
     {
 
-    
 
-        $email = $_POST["email"];
 
-        if(isset($email))
+        if(isset($_POST["email"])) 
         {
             $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
             $parameters = [
                 'email' => $email
                 ];
                 $query->execute($parameters);
-                $user = $query->fetch(PDO::FETCH_ASSOC);
-
-                return new User($user['id'], $user['username'], $user['email'], $user['password'], $user['role'], $user['created_at']);
-    
+                $useremail = $query->fetch(PDO::FETCH_ASSOC);
+                
+                if($useremail === false)
+                {
+                    return null;
+                }
+                
+                    
         }
+        return $useremail;
+        
 
     }
 

@@ -14,11 +14,41 @@ class AuthController extends AbstractController
 
     public function checkLogin() : void
     {
-        // si le login est valide => connecter puis rediriger vers la home
-        // $this->redirect("index.php");
+        if(isset($_POST["email"])  && isset($_POST["password"]))
+        {
+        /*  $unsafeCode = "<script>alert('toto');</script>";
+            $safeCode = htmlspecialchars($unsafeCode); */
+            $checkemail = $this->checkInput($_POST["email"]);
+            $infosuser = new UserManager();
+            var_dump($infosuser->findByEmail($checkemail));
+            $infosuser = $infosuser->findByEmail($checkemail);
 
-        // sinon rediriger vers login
-        // $this->redirect("index.php?route=login");
+            
+            $password = $this->checkInput($_POST["password"]); 
+            $hash = $infosuser["password"];
+            $isPasswordCorrect = password_verify($password, $hash);
+            
+
+            if(($checkemail === $infosuser["email"]) && ($isPasswordCorrect === true))
+            {   
+                // si le login est valide => connecter puis rediriger vers la home
+                $this->redirect("index.php");
+                // $route = "espace-perso";
+                $_SESSION["username"] = $infosuser["username"];
+                // require "templates/layout.phtml";
+                
+            }
+            else
+            {   
+                // sinon rediriger vers login
+                $this->redirect("index.php?route=login");
+                echo $_POST['loginPassword'] ." ". $isPasswordCorrect;
+                echo "<p>Email ou Password NOK !!!</p><br>";
+            }
+        }
+
+
+        
     }
 
     public function register() : void
@@ -40,5 +70,13 @@ class AuthController extends AbstractController
         session_destroy();
 
         $this->redirect("index.php");
+    }
+
+    private function checkInput($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 }
