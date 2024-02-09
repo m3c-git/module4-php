@@ -1,0 +1,19 @@
+{
+
+  "site_title" : "Secure Bloc",
+  "nav_home_link" : "Home",
+  "nav_catogories_link" : "Catégories",
+  "nav_catogories_dev_link" : "Developpement",
+  "nav_catogories_design_link" : "Design",
+  "nav_catogories_accessibility_link" : "Accessibility",
+  "nav_register_link" : "Register",
+  "nav_login_link" : "Login",
+  "nav_logout_link" : "Logout",
+  "login_choose_name_label" : "Choose a name",
+  "nav_switch_link" : "Switch Language",
+  "login_email_label" : "Email",
+  "login_password_label" : "Password",
+  "login_submit_button" : "Login",
+  "login_register_text" : "You do not yet have an account ?",
+  "login_link_text" : "Register here"
+}

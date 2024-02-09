@@ -7,6 +7,18 @@
 
 class AuthController extends AbstractController
 {
+    public function __construct()
+    {
+        $lang = $_SESSION["lang"];
+
+        parent::__construct("auth", $lang);
+    }
+
+    public function getTranslator() : Translator
+    {
+        return $this->translator;
+    }
+
     public function login() : void
     {
         $this->render("login", []);

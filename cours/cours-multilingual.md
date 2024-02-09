@@ -179,7 +179,7 @@ Avec cette stratégie, vous devez avoir un fichier de traduction par controller 
 
 - `auth_en.json`
 - `auth_fr.json`
-- `blog_en.json`
+- `blog_en.json`tfdsq   
 - `blog_fr.json`
 
 ---
