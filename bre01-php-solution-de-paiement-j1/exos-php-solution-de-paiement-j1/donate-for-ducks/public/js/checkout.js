@@ -5,8 +5,8 @@
 
 const stripe = Stripe('pk_test_51IR2zxGbXgDCCUMp8qURAXprMiBsMZeIjRvhF6KOKMPzk8oIlfXRG0nwYK8jSI3jw20S46muAUGWAQXkEc3xhANK00FMDcjy8V');
 
-let amount = document.querySelectorAll("#montant-personnalise").values;
-let montant = document.querySelectorAll("#montant-personnalise");
+let amount = document.querySelector("#montant-personnalise").values;
+let montant = document.querySelector("#montant-personnalise");
 
 montant.addEventListener("change", function(){
   amount = montant
@@ -15,8 +15,6 @@ montant.addEventListener("change", function(){
   }
 
 })
-
-
 
 
 let elements;
