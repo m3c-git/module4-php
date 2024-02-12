@@ -1,0 +1,1 @@
+https://stripe.com/docs/payments/quickstart?locale=fr-FR&platform=web&client=html&lang=php

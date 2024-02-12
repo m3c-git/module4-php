@@ -5,11 +5,12 @@
 
 const stripe = Stripe('pk_test_51IR2zxGbXgDCCUMp8qURAXprMiBsMZeIjRvhF6KOKMPzk8oIlfXRG0nwYK8jSI3jw20S46muAUGWAQXkEc3xhANK00FMDcjy8V');
 
-let amount = document.querySelector("#montant-personnalise").values;
-let montant = document.querySelector("#montant-personnalise");
+let amount;
+let input = document.querySelector("#montant-personnalise");
 
-montant.addEventListener("change", function(){
-  amount = montant
+input.addEventListener("change", function(){
+  amount = input.value;
+
   if(amount >= 1){
     initialize();
   }
@@ -54,7 +55,7 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "http://localhost:3000/bre01-php-solution-de-paiement-j1/exos-php-solution-de-paiement-j1/donate-for-ducks/public/app/views/index.php",
+      return_url: "http://localhost:3000/bre01-php-solution-de-paiement-j1/exos-php-solution-de-paiement-j1/donate-for-ducks/public/index.php",
     },
   });
 
