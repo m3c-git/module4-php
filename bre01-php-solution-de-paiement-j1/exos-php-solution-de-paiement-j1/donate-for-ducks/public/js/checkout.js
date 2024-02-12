@@ -3,10 +3,21 @@
 /* global fetch */
 /* global URLSearchParams */
 
-const stripe;
+const stripe = Stripe('pk_test_51IR2zxGbXgDCCUMp8qURAXprMiBsMZeIjRvhF6KOKMPzk8oIlfXRG0nwYK8jSI3jw20S46muAUGWAQXkEc3xhANK00FMDcjy8V');
 
-let amount;
-initialize();
+let amount = document.querySelectorAll("#montant-personnalise").values;
+let montant = document.querySelectorAll("#montant-personnalise");
+
+montant.addEventListener("change", function(){
+  amount = montant
+  if(amount >= 1){
+    initialize();
+  }
+
+})
+
+
+
 
 let elements;
 
@@ -45,7 +56,7 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "",
+      return_url: "http://localhost:3000/bre01-php-solution-de-paiement-j1/exos-php-solution-de-paiement-j1/donate-for-ducks/public/app/views/index.php",
     },
   });
 
