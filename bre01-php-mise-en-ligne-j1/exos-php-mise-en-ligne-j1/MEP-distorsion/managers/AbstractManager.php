@@ -1,14 +1,15 @@
 <?php
 
-require_once '../vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable('../config');
-$dotenv->load();
+
 
     class AbstractManager
     {
         protected PDO $db;
         
         public function __construct() {
+            require_once __DIR__ . '/../vendor/autoload.php';
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../config');
+            $dotenv->load();
             $dbhost = $_ENV['dbHost'];
             $dbuser = $_ENV['dbUser'];
             $dbpass = $_ENV['dbPass'];
