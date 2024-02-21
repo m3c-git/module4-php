@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+<main>
+    <h1>Accueil</h1>
+    {{ dump(posts) }}
+    {% for post in posts %}
+        
+    
+            <li>{{ post.title }}</li>
+        {% endfor %}
+
+   
+</main>
+    
+{% endblock %}
+
