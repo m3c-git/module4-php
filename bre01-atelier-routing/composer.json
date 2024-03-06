@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "classmap": [
+            "controllers/",
+            "managers/",
+            "models/",
+            "services/"
+        ]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
