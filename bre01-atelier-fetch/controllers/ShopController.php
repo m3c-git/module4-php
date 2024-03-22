@@ -5,7 +5,9 @@ class ShopController extends AbstractController
 
     public function shop() : void
     {
-        echo "shop"; 
+        $this->render("shop/shop.html.twig", [
+            "title" => "Boutique"
+        ]);
     }
 
     public function addToCart() : void
@@ -16,7 +18,9 @@ class ShopController extends AbstractController
 
     public function cart() : void
     {
-        echo "cart"; 
+        $this->render("shop/cart.html.twig", [
+            "title" => "Panier"
+        ]);
 
     }
 }
