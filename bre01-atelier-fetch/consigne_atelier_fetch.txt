@@ -1,0 +1,370 @@
+Créez les dossiers et fichiers suivants : 
+
+- assets
+  - assets/js/main.js
+  - assets/styles/css
+  - assets/styles/sass/style.scss
+- controllers
+- managers
+- models
+- services
+- templates
+- index.php
+Nous allons mettre en place le fichier .gitignore qui nous évitera de versionner des informations que l'on ne veut pas rendre publiques
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Créez un fichier .gitignore dans lequel vous mettrez le contenu suivant :
+
+vendor
+.env
+composer.lock
+
+Faites un add / commit / push des fichiers que vous avez
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Nous allons ensuite installer nos vendors (les librairies externes que nous utilisons sur le projet) ainsi que l'autoload de nos classes, pour cet atelier, 
+nous allons utiliser dotenv, twig et le var_dumper :
+
+Créez un fichier composer.json à la racine du projet et mettez-y le contenu suivant :
+{
+    "autoload": {
+        "classmap": [
+            "controllers/",
+            "managers/",
+            "models/",
+            "services/"
+        ]
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "twig/twig": "^3.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^7.0"
+    }
+}
+
+Dans votre terminal, placez-vous dans le dossier de votre projet et à la racine faites la commande :
+composer update
+puis
+composer dump-autoload
+
+Si vous êtes sur l’IDE de la 3WA et que vous avez une erreur pour composer update remplacez le numéro de version du var_dumper par «^6.0»
+Dans votre fichier index.php, mettez le code suivant :
+<?php
+
+// charge l'autoload de composer
+require "vendor/autoload.php";
+
+// charge le contenu du .env dans $_ENV
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
+Ce code permet de charger les classes des vendors et de charger le contenu du fichier .env que nous remplirons plus tard.
+
+Pour linstant créez un fichier .env à la racine du projet et mettez-y le contenu suivant :
+
+# Database info
+DB_NAME="databasename"
+DB_USER="username"
+DB_PASSWORD="password"
+DB_CHARSET="utf8"
+DB_HOST="db.3wa.io"
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Dans le dossier services, créez un fichier Router.php, dans lequel vous mettrez le code suivant :
+<?php
+
+class Router 
+{
+    public function handleRequest(array $get) : void
+    {
+        if(isset($get["route"]))
+        {
+            if($get["route"] === "boutique")
+            {
+                echo "ShopController->shop<br>";
+            }
+            else if($get["route"] === "ajouter-au-panier")
+            {
+                echo "ShopController->addToCart<br>";
+            }
+            else if($get["route"] === "panier")
+            {
+                echo "ShopController->cart<br>";
+            }
+            else
+            {
+                echo "DefaultController->notFound<br>";
+            }
+        }
+        else
+        {
+            echo "DefaultController->home<br>";
+        }
+    }
+}
+De ce Router, nous pouvons déduire que nous allons devoir créer deux controllers : 
+
+DefaultController qui aura deux méthodes :
+
+- public function home() : void
+- public function notFound() : void
+
+ShopController qui aura 3 méthodes :
+
+- public function shop() : void
+- public function addToCart() : void
+- public function cart() : void
+
+Avant de pouvoir créer ses controllers, nous devons créer lAbstractController dont ils vont hériter.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Dans votre dossier controllers, créez un fichier AbstractController où vous mettrez le code suivant :
+abstract class AbstractController
+{
+    private \Twig\Environment $twig;
+    public function __construct()
+    {
+        $loader = new \Twig\Loader\FilesystemLoader('templates');
+        $twig = new \Twig\Environment($loader,[
+            'debug' => true,
+        ]);
+
+        $twig->addExtension(new \Twig\Extension\DebugExtension());
+
+        $this->twig = $twig;
+    }
+
+    protected function render(string $template, array $data) : void
+    {
+        echo $this->twig->render($template, $data);
+    }
+
+    protected function renderJson(array $data) : void
+    {
+        echo json_encode($data);
+    }
+}
+
+Ensuite, vous allez créer vos deux controllers qui héritent dAbstractController et leurs méthodes.
+
+Comme contenu des méthodes, pour le moment, mettez uniquement le contenu que vous aviez dans le routeur.
+
+Pour la méthode home du DefaultController par exemple, elle ressemblera à ceci :
+public function home() : void
+{
+    echo "DefaultController->home<br>";
+}
+Une fois vos controllers créés noubliez pas de faire la commande suivante dans votre terminal à la racine du projet :
+composer dump-autoload
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Modifiez ensuite votre Router pour qu'au lieu de faire des echo, il appelle le bon controller et sa méthode.
+
+Puis :
+composer dump-autoload
+
+Modifiez ensuite votre Router pour qu'au lieu de faire des echo, il appelle le bon controller et sa méthode.
+
+Puis :
+composer dump-autoload
+Ensuite, dans votre fichier index.php, instanciez un Router et appelez sa méthode handleRequest en lui passant $_GET en paramètres.
+
+Puis pour tester que tout fonctionne, runnez votre index.php et faites varier votre URL pour vérifiez que les routes affichent bien le contenu approprié.
+
+Une fois que tout fonctionne : add / commit / push
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Dans le dossier templates, créez un fichier base.html.twig dans lequel vous mettrez le code suivant :
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>Ma boutique</title>
+        <link rel="stylesheet" href="assets/styles/css/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Ma boutique</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="index.php">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=boutique">Boutique</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=panier">Panier</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        {% block main %}
+        {% endblock %}
+        <script type="module" src="assets/js/main.js"></script>
+    </body>
+</html>
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Puis dans le dossier templates, créez un dossier default. Dans le dossier default créez deux fichiers :
+
+- home.html.twig
+- 404.html.twig
+{% extends "base.html.twig" %}
+{% block main %}
+    <main>
+        <h2>
+          {{ title }}
+        </h2>
+    </main>
+{% endblock %}
+
+Puis dans le dossier templates, créez un dossier shop. Dans le dossier shop, créez deux fichiers :
+- shop.html.twig
+- cart.html.twig
+{% extends "base.html.twig" %}
+{% block main %}
+    <main>
+        <h2>
+            {{ title }}
+        </h2>
+    </main>
+{% endblock %}
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Dans la méthode home de votre DefaultController, remplacez l'écho par le code suivant :
+$this->render("default/home.html.twig", [
+    "title" => "Accueil"
+]);
+
+Dans la méthode notFound de votre DefaultController, remplacez l'écho par le code suivant :
+$this->render("default/404.html.twig", [
+    "title" => "404 : Page introuvable"
+]);
+
+Dans la méthode shop de votre ShopController, remplacez l'écho par le code suivant :
+$this->render("shop/shop.html.twig", [
+    "title" => "Boutique"
+]);
+
+Dans la méthode cart de votre ShopController, remplacez l'écho par le code suivant :
+$this->render("shop/cart.html.twig", [
+    "title" => "Panier"
+]);
+
+Utilisez la nav de votre page pour tester si tout fonctionne bien.
+Add / Commit / Push
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Vous allez créer une nouvelle base de données et y importer le fichier products.sql.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Vous allez ensuite créer un modèle Product correspondant à cette table dans votre dossier models.
+
+Vous allez ajouter une méthode publique à votre Product : 
+
+public function toArray() : array
+
+qui retourne un tableau associatif contenant toutes les infos de votre modèle.
+Mettez les informations de votre base de données dans votre fichier .env.
+Nous allons ensuite créer un AbstractManager dans notre dossier managers et y mettre le code suivant :
+abstract class AbstractManager
+{
+    protected PDO $db;
+
+    public function __construct()
+    {
+        $connexion = "mysql:host=".$_ENV["DB_HOST"].";port=3306;charset=".$_ENV["DB_CHARSET"].";dbname=".$_ENV["DB_NAME"];
+        $this->db = new PDO(
+            $connexion,
+            $_ENV["DB_USER"],
+            $_ENV["DB_PASSWORD"]
+        );
+    }
+}
+Puis créez un ProductManager qui hérite d'AbstractManager et ne contient qu'une seule méthode : findAll() : array.
+
+qui retournera un tableau de Product qui retournera tous les produits de la base de données.
+composer dump-autoload
+
+Un exemple de méthode toArray dans une classe : 
+
+https://github.com/Gaellan/bre01-distorsion/blob/main/models/Channel.php
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Dans votre index.php, démarrez une session juste après le chargement du .env.
+
+Dans votre ProductManager, rajoutez une méthode findOne(int $id) : ? Product qui permet de récupérer dans la base de données le produit qui a l'id passé en paramètre, ou null si ce produit n'existe pas.
+
+Dans la méthode addToCart de votre ShopController, récupérez dans $_POST le product_id qui aura été envoyé.
+
+Instanciez un ProductManager et utilisez-le pour récupérer le product qui correspond à l'id envoyé.
+
+Ensuite, utilisez la session pour simuler votre panier, par exemple en stockant un array des produits dans une variable $_SESSION["cart"].
+
+Ensuite, vous allez utiliser la méthode renderJson de votre controller pour lui faire afficher le panier JSON.
+
+Attention : JSON ne sait pas lire les classes, avant de stocker vos produits dans la panier il faudra donc utiliser leur méthode toArray pour les transformer en tableau associatif.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Dans votre fichier main.js, on va commencer par vérifier que notre DOM est bien chargé avant d'ajouter quoi que ce soit comme code :
+
+    document.addEventListener("DOMContentLoaded", () => {
+    console.log("Le DOM est chargé.");
+    
+    // votre code sera ici
+    });
+    Ensuite, nous allons créer un fichier cart.js, dans lequel nous allons créer une fonction addToCart(product_id), qui sera vide pour le moment que nous allons exporter.
+    
+    Ensuite importez la fonction addToCart dans votre fichier main.js.
+    Notre nouveau comportement ne concernera que la page boutique, du coup, nous allons vérifier que nous sommes bien sur cette page avant de le déclencher.
+    
+    Voilà une fonction en JavaScript qui récupère la route dans l'URL et la retourne (s'il n'y a pas de route, elle renvoie null) que vous pouvez utiliser :
+    
+    ```js
+    function getRoute()
+    {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+    
+        return urlParams.get('route');
+    }
+    ```
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Si vous êtes bien sur la page boutique, récupérez la liste des boutons d'ajout au panier avec un querySelectorAll.
+
+Pour chacun des boutons, ajoutez-lui un eventListener qui surveille l'event click.
+
+Lorsqu'un bouton est cliqué, récupérez l'attribut data-product du bouton et appelez addToCart en lui passant la valeur de data-product en paramètres.
+
+Récupérer un attribut en JS : https://developer.mozilla.org/fr/docs/Web/API/Element/getAttribute
+
+Placez le code suivant dans la fonction addToCart et vérifiez que tout fonctionne dans la console du navigateur :
+    console.log(`Add product ${product_id} to cart.`);
+    Add / Commit / Push
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Ensuite vous allez créer un Formulaire JS qui contient votre product_id avec le code suivant :
+let formData = new FormData();
+formData.append('product_id', product_id);
+Puis vous allez utiliser fetch pour envoyer cette information à la route addToCart que vous avez créé en PHP en utilisant le code suivant :
+const options = {
+            method: 'POST',
+            body: formData
+        };
+fetch('index.php?route=ajouter-au-panier', options)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+Notre méthode PHP renvoyait le panier complet, vérifiez donc dans votre console JavaScript qu'elle vous renvoie le panier.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pour Ryan : tu peux par exemple, compte le nombre d’eléments dans le panier que tu récupères pour mettre à jour ta pastille qui indique le nombre de prduits dans le panier :)
